@@ -1,0 +1,598 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mission CC Poster Generator</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Mission CC Poster Generator</h1>
+            <p>Developed by <a href="https://www.instagram.com/shahin.shadi_ck/">Shahin.Shadi_ck</a></p>
+        </div>
+
+        <div class="form-container">
+            <div class="form-grid">
+                <!-- Post 1 -->
+                <div class="form-section">
+                    <h3>Post 1</h3>
+                    <div class="form-group">
+                        <label>Author Name:</label>
+                        <input type="text" id="author1" placeholder="Author Name">
+                    </div>
+                    <div class="form-group">
+                        <label>Publication :</label>
+                        <textarea id="pubText1"
+                            placeholder="Text after author name">Congratulations for publishing an article in keraleeyam magazine.</textarea>
+                    </div>
+                    <div class="form-group">
+                        <label>Publication Number:</label>
+                        <input type="text" id="link1" placeholder="e.g. 1">
+                    </div>
+                    <div class="form-group">
+                        <label>Publication Image:</label>
+                        <div class="file-input">
+                            <input type="file" id="pubImg1" accept="image/*">
+                            <label class="file-input-label" for="pubImg1">Choose Publication Image</label>
+                        </div>
+                        <div class="preview-container" id="pubPreview1"></div>
+                    </div>
+                    <div class="form-group">
+                        <label>Author Image:</label>
+                        <div class="file-input">
+                            <input type="file" id="authImg1" accept="image/*">
+                            <label class="file-input-label" for="authImg1">Choose Author Image</label>
+                        </div>
+                        <div class="preview-container" id="authPreview1"></div>
+                    </div>
+                </div>
+
+                <!-- Post 2 -->
+                <div class="form-section">
+                    <h3>Post 2</h3>
+                    <div class="form-group">
+                        <label>Author Name:</label>
+                        <input type="text" id="author2" placeholder="Author Name">
+                    </div>
+                    <div class="form-group">
+                        <label>Publication:</label>
+                        <textarea id="pubText2"
+                            placeholder="Text after author name">Congratulations for publishing an article in keraleeyam magazine.</textarea>
+                    </div>
+                    <div class="form-group">
+                        <label>Publication Number:</label>
+                        <input type="text" id="link2" placeholder="e.g. 2">
+                    </div>
+                    <div class="form-group">
+                        <label>Publication Image:</label>
+                        <div class="file-input">
+                            <input type="file" id="pubImg2" accept="image/*">
+                            <label class="file-input-label" for="pubImg2">Choose Publication Image</label>
+                        </div>
+                        <div class="preview-container" id="pubPreview2"></div>
+                    </div>
+                    <div class="form-group">
+                        <label>Author Image:</label>
+                        <div class="file-input">
+                            <input type="file" id="authImg2" accept="image/*">
+                            <label class="file-input-label" for="authImg2">Choose Author Image</label>
+                        </div>
+                        <div class="preview-container" id="authPreview2"></div>
+                    </div>
+                </div>
+
+                <!-- Post 3 -->
+                <div class="form-section">
+                    <h3>Post 3</h3>
+                    <div class="form-group">
+                        <label>Author Name:</label>
+                        <input type="text" id="author3" placeholder="Author Name">
+                    </div>
+                    <div class="form-group">
+                        <label>Publication:</label>
+                        <textarea id="pubText3"
+                            placeholder="Text after author name">Congratulations for publishing an article in keraleeyam magazine.</textarea>
+                    </div>
+                    <div class="form-group">
+                        <label>Publication Number:</label>
+                        <input type="text" id="link3" placeholder="e.g. 3">
+                    </div>
+                    <div class="form-group">
+                        <label>Publication Image:</label>
+                        <div class="file-input">
+                            <input type="file" id="pubImg3" accept="image/*">
+                            <label class="file-input-label" for="pubImg3">Choose Publication Image</label>
+                        </div>
+                        <div class="preview-container" id="pubPreview3"></div>
+                    </div>
+                    <div class="form-group">
+                        <label>Author Image:</label>
+                        <div class="file-input">
+                            <input type="file" id="authImg3" accept="image/*">
+                            <label class="file-input-label" for="authImg3">Choose Author Image</label>
+                        </div>
+                        <div class="preview-container" id="authPreview3"></div>
+                    </div>
+                </div>
+            </div>
+
+
+
+            <div class="loading" id="loading">
+                <div class="spinner"></div>
+                <p>Generating poster...</p>
+            </div>
+
+            <button class="generate-btn" id="generateBtn">Generate Poster</button>
+
+            <div class="poster-preview" id="posterPreview">
+                <h3>Poster Preview</h3>
+                <canvas class="poster-canvas" id="posterCanvas"></canvas>
+                <br><br>
+                <button class="generate-btn" id="downloadBtn">Download Poster</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Hidden poster for high-res generation -->
+    <div class="hidden-poster" id="hiddenPoster">
+        <img id="posterBG" src="" alt="">
+
+        <img class="publication" id="pub1" src="" alt="">
+        <img class="author-img" id="auth1" src="" alt="">
+        <p class="author" id="authorText1"><span></span></p>
+        <p class="link" id="linkText1"></p>
+
+        <img class="publication second-post" id="pub2" src="" alt="">
+        <img class="author-img second-post" style="left: 1420px;" id="auth2" src="" alt="">
+        <p class="author second-post" id="authorText2"><span></span></p>
+        <p class="link second-post" id="linkText2"></p>
+
+        <img class="publication third-post" id="pub3" src="" alt="">
+        <img class="author-img third-post" style="left: 2450px;" id="auth3" src="" alt="">
+        <p class="author third-post" id="authorText3"><span></span></p>
+        <p class="link third-post" id="linkText3"></p>
+    </div>
+
+    <div class="crop-popup" id="cropPopup">
+        <div class="crop-popup-content">
+            <div class="crop-popup-header">
+                <h3 id="cropPopupTitle">Crop Image</h3>
+                <button class="crop-popup-close" onclick="closeCropPopup()">&times;</button>
+            </div>
+            <div id="cropPopupBody">
+                <!-- Cropping interface will be inserted here -->
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <script>
+        class PosterGenerator {
+            constructor() {
+                this.croppedImages = {};
+                this.setupEventListeners();
+            }
+
+            setupEventListeners() {
+                // File input handlers
+                for (let i = 1; i <= 3; i++) {
+                    document.getElementById(`pubImg${i}`).addEventListener('change', (e) => this.handleImageUpload(e, 'publication', i));
+                    document.getElementById(`authImg${i}`).addEventListener('change', (e) => this.handleImageUpload(e, 'author', i));
+                }
+                // Generate button
+                document.getElementById('generateBtn').addEventListener('click', () => this.generatePoster());
+                document.getElementById('downloadBtn').addEventListener('click', () => this.downloadPoster());
+            }
+
+            handleImageUpload(event, type, index) {
+                const file = event.target.files[0];
+                if (!file) return;
+
+                const reader = new FileReader();
+                reader.onload = (e) => {
+                    const img = new Image();
+                    img.onload = () => {
+                        this.showImageCropper(img, type, index);
+                    };
+                    img.src = e.target.result;
+                };
+                reader.readAsDataURL(file);
+            }
+
+            showImageCropper(img, type, index) {
+                // Set target dimensions
+                let targetWidth, targetHeight;
+                if (type === 'publication') {
+                    targetWidth = 713;
+                    targetHeight = 713;
+                } else if (type === 'author') {
+                    targetWidth = 199;
+                    targetHeight = 254;
+                }
+
+                // Show popup
+                const popup = document.getElementById('cropPopup');
+                const popupBody = document.getElementById('cropPopupBody');
+                const popupTitle = document.getElementById('cropPopupTitle');
+
+                popupTitle.textContent = `Crop ${type === 'publication' ? 'Publication' : 'Author'} Image`;
+
+                // Clear previous content
+                popupBody.innerHTML = '';
+
+                // Calculate display size (scaled down for preview)
+                const maxDisplaySize = 400;
+                const displayScale = Math.min(maxDisplaySize / img.width, maxDisplaySize / img.height);
+                const displayWidth = img.width * displayScale;
+                const displayHeight = img.height * displayScale;
+
+                // Create canvas for displaying the image
+                const canvas = document.createElement('canvas');
+                const ctx = canvas.getContext('2d');
+                canvas.width = displayWidth;
+                canvas.height = displayHeight;
+
+                // Draw the full image
+                ctx.drawImage(img, 0, 0, displayWidth, displayHeight);
+
+                // Create container for canvas and crop overlay
+                const canvasContainer = document.createElement('div');
+                canvasContainer.className = 'canvas-container';
+                canvasContainer.appendChild(canvas);
+
+                // Calculate initial crop area based on target aspect ratio
+                const targetAspect = targetWidth / targetHeight;
+                const imgAspect = img.width / img.height;
+
+                let initialCropWidth, initialCropHeight;
+                if (imgAspect > targetAspect) {
+                    // Image is wider than target
+                    initialCropHeight = displayHeight * 0.8;
+                    initialCropWidth = initialCropHeight * targetAspect;
+                } else {
+                    // Image is taller than target
+                    initialCropWidth = displayWidth * 0.8;
+                    initialCropHeight = initialCropWidth / targetAspect;
+                }
+
+                const initialCropX = (displayWidth - initialCropWidth) / 2;
+                const initialCropY = (displayHeight - initialCropHeight) / 2;
+
+                // Create crop overlay
+                const cropOverlay = document.createElement('div');
+                cropOverlay.className = 'crop-overlay';
+                cropOverlay.style.left = initialCropX + 'px';
+                cropOverlay.style.top = initialCropY + 'px';
+                cropOverlay.style.width = initialCropWidth + 'px';
+                cropOverlay.style.height = initialCropHeight + 'px';
+
+                // Create crop handle
+                const cropHandle = document.createElement('div');
+                cropHandle.className = 'crop-handle';
+                cropOverlay.appendChild(cropHandle);
+
+                canvasContainer.appendChild(cropOverlay);
+
+                // Add drag functionality
+                this.makeDraggable(cropOverlay, canvasContainer);
+                this.makeResizable(cropOverlay, cropHandle, targetAspect, canvasContainer);
+
+                // Create crop tools
+                const cropTools = document.createElement('div');
+                cropTools.className = 'crop-tools';
+
+                const cropButton = document.createElement('button');
+                cropButton.textContent = 'Apply Crop';
+                cropButton.onclick = () => {
+                    this.applyCrop(img, cropOverlay, canvas, type, index, targetWidth, targetHeight);
+                    closeCropPopup();
+                };
+
+                const resetButton = document.createElement('button');
+                resetButton.className = 'secondary';
+                resetButton.textContent = 'Reset';
+                resetButton.onclick = () => this.resetCrop(cropOverlay, initialCropX, initialCropY, initialCropWidth, initialCropHeight);
+
+                const cancelButton = document.createElement('button');
+                cancelButton.className = 'secondary';
+                cancelButton.textContent = 'Cancel';
+                cancelButton.onclick = () => closeCropPopup();
+
+                const cropInfo = document.createElement('div');
+                cropInfo.className = 'crop-info';
+
+                cropTools.appendChild(cropButton);
+                cropTools.appendChild(resetButton);
+                cropTools.appendChild(cancelButton);
+                cropTools.appendChild(cropInfo);
+
+                popupBody.appendChild(canvasContainer);
+                popupBody.appendChild(cropTools);
+
+                // Show popup
+                popup.classList.add('show');
+            }
+            makeDraggable(element, container) {
+                let isDragging = false;
+                let startX, startY, initialX, initialY;
+
+                element.addEventListener('mousedown', (e) => {
+                    if (e.target.classList.contains('crop-handle')) return;
+
+                    isDragging = true;
+                    startX = e.clientX;
+                    startY = e.clientY;
+                    initialX = element.offsetLeft;
+                    initialY = element.offsetTop;
+
+                    document.addEventListener('mousemove', drag);
+                    document.addEventListener('mouseup', stopDrag);
+                });
+
+                function drag(e) {
+                    if (!isDragging) return;
+
+                    const dx = e.clientX - startX;
+                    const dy = e.clientY - startY;
+
+                    let newX = initialX + dx;
+                    let newY = initialY + dy;
+
+                    // Constrain within container bounds
+                    const containerRect = container.getBoundingClientRect();
+                    const elementRect = element.getBoundingClientRect();
+
+                    newX = Math.max(0, Math.min(newX, container.offsetWidth - element.offsetWidth));
+                    newY = Math.max(0, Math.min(newY, container.offsetHeight - element.offsetHeight));
+
+                    element.style.left = newX + 'px';
+                    element.style.top = newY + 'px';
+                }
+
+                function stopDrag() {
+                    isDragging = false;
+                    document.removeEventListener('mousemove', drag);
+                    document.removeEventListener('mouseup', stopDrag);
+                }
+            }
+
+            makeResizable(element, handle, targetAspect, container) {
+                let isResizing = false;
+                let startX, startY, initialWidth, initialHeight;
+
+                handle.addEventListener('mousedown', (e) => {
+                    isResizing = true;
+                    startX = e.clientX;
+                    startY = e.clientY;
+                    initialWidth = element.offsetWidth;
+                    initialHeight = element.offsetHeight;
+
+                    document.addEventListener('mousemove', resize);
+                    document.addEventListener('mouseup', stopResize);
+                    e.stopPropagation();
+                });
+
+                function resize(e) {
+                    if (!isResizing) return;
+
+                    const dx = e.clientX - startX;
+                    const dy = e.clientY - startY;
+
+                    let newWidth = initialWidth + dx;
+                    let newHeight = newWidth / targetAspect;
+
+                    // Constrain within container bounds
+                    const maxWidth = container.offsetWidth - element.offsetLeft;
+                    const maxHeight = container.offsetHeight - element.offsetTop;
+
+                    newWidth = Math.min(newWidth, maxWidth);
+                    newHeight = Math.min(newHeight, maxHeight);
+
+                    // Maintain aspect ratio
+                    if (newWidth / targetAspect > newHeight) {
+                        newWidth = newHeight * targetAspect;
+                    } else {
+                        newHeight = newWidth / targetAspect;
+                    }
+
+                    // Minimum size
+                    newWidth = Math.max(50, newWidth);
+                    newHeight = Math.max(50, newHeight);
+
+                    element.style.width = newWidth + 'px';
+                    element.style.height = newHeight + 'px';
+                }
+
+                function stopResize() {
+                    isResizing = false;
+                    document.removeEventListener('mousemove', resize);
+                    document.removeEventListener('mouseup', stopResize);
+                }
+            }
+
+            applyCrop(img, cropOverlay, canvas, type, index, targetWidth, targetHeight) {
+                const canvasRect = canvas.getBoundingClientRect();
+                const overlayRect = cropOverlay.getBoundingClientRect();
+
+                // Calculate crop coordinates relative to the original image
+                const scaleX = img.width / canvas.width;
+                const scaleY = img.height / canvas.height;
+
+                const cropX = (overlayRect.left - canvasRect.left) * scaleX;
+                const cropY = (overlayRect.top - canvasRect.top) * scaleY;
+                const cropWidth = overlayRect.width * scaleX;
+                const cropHeight = overlayRect.height * scaleY;
+
+                // Create final cropped image
+                const croppedCanvas = document.createElement('canvas');
+                const croppedCtx = croppedCanvas.getContext('2d');
+                croppedCanvas.width = targetWidth;
+                croppedCanvas.height = targetHeight;
+
+                // Draw cropped and scaled image
+                croppedCtx.drawImage(img, cropX, cropY, cropWidth, cropHeight, 0, 0, targetWidth, targetHeight);
+
+                // Store the cropped image data
+                this.croppedImages[`${type}${index}`] = croppedCanvas.toDataURL();
+
+                // Show success message in the form
+                const previewId = type === 'publication' ? `pubPreview${index}` : `authPreview${index}`;
+                const container = document.getElementById(previewId);
+                container.innerHTML = '';
+
+                const previewCanvas = document.createElement('canvas');
+                const previewCtx = previewCanvas.getContext('2d');
+                const previewSize = 150;
+                previewCanvas.width = previewSize;
+                previewCanvas.height = previewSize * (targetHeight / targetWidth);
+
+                previewCtx.drawImage(croppedCanvas, 0, 0, previewCanvas.width, previewCanvas.height);
+                container.appendChild(previewCanvas);
+
+                const successMsg = document.createElement('div');
+                successMsg.textContent = '✓ Crop applied successfully';
+                successMsg.style.color = '#28a745';
+                successMsg.style.marginTop = '10px';
+                successMsg.style.fontSize = '14px';
+                container.appendChild(successMsg);
+            }
+
+            resetCrop(cropOverlay, initialX, initialY, initialWidth, initialHeight) {
+                cropOverlay.style.left = initialX + 'px';
+                cropOverlay.style.top = initialY + 'px';
+                cropOverlay.style.width = initialWidth + 'px';
+                cropOverlay.style.height = initialHeight + 'px';
+            }
+
+            generatePoster() {
+                const loading = document.getElementById('loading');
+                loading.classList.add('show');
+
+                setTimeout(() => {
+                    this.updatePosterContent();
+                    this.createPreview();
+                    loading.classList.remove('show');
+                    document.getElementById('posterPreview').style.display = 'block';
+                }, 100);
+            }
+
+            updatePosterContent() {
+                const hiddenPoster = document.getElementById('hiddenPoster');
+
+                // Set a default background - you can replace this with your actual template image URL
+                const bgImg = document.getElementById('posterBG');
+                bgImg.src = './Missioncc poster.jpg';
+
+                // Update content for each post
+                for (let i = 1; i <= 3; i++) {
+                    const authorName = document.getElementById(`author${i}`).value;
+                    const pubText = document.getElementById(`pubText${i}`).value;
+                    const linkText = document.getElementById(`link${i}`).value;
+
+                    // Update text content
+                    const authorEl = document.getElementById(`authorText${i}`);
+                    authorEl.innerHTML = `<span>${authorName}</span> ${pubText}`;
+
+                    const finalLinkText = linkText.startsWith('#') ? linkText : '#' + linkText;
+                    document.getElementById(`linkText${i}`).textContent = finalLinkText;
+
+                    // Update images
+                    if (this.croppedImages[`publication${i}`]) {
+                        document.getElementById(`pub${i}`).src = this.croppedImages[`publication${i}`];
+                    }
+                    if (this.croppedImages[`author${i}`]) {
+                        document.getElementById(`auth${i}`).src = this.croppedImages[`author${i}`];
+                    }
+                }
+            }
+
+            createPreview() {
+                const canvas = document.getElementById('posterCanvas');
+                const ctx = canvas.getContext('2d');
+
+                // Set preview size (scaled down)
+                const previewScale = 0.2;
+                canvas.width = 3508 * previewScale;
+                canvas.height = 2480 * previewScale;
+
+                // Create a preview by capturing the hidden poster
+                html2canvas(document.getElementById('hiddenPoster'), {
+                    useCORS: true,
+                    allowTaint: true,
+                    scale: previewScale,
+                    width: 3508,
+                    height: 2480
+                }).then(canvas => {
+                    const previewCanvas = document.getElementById('posterCanvas');
+                    const ctx = previewCanvas.getContext('2d');
+                    ctx.clearRect(0, 0, canvas.width, canvas.height);
+                    ctx.drawImage(canvas, 0, 0);
+                });
+            }
+
+            downloadPoster() {
+                const loading = document.getElementById('loading');
+                loading.classList.add('show');
+
+                setTimeout(() => {
+                    html2canvas(document.getElementById('hiddenPoster'), {
+                        useCORS: true,
+                        allowTaint: true,
+                        scale: 2,
+                        width: 3508,
+                        height: 2480
+                    }).then(canvas => {
+                        const link = document.createElement('a');
+                        // Get all three link values
+                        const link1 = document.getElementById('link1').value;
+                        const link2 = document.getElementById('link2').value;
+                        const link3 = document.getElementById('link3').value;
+
+                        // Clean links (remove # if present) and create filename
+                        const cleanLink1 = link1.replace('#', '');
+                        const cleanLink2 = link2.replace('#', '');
+                        const cleanLink3 = link3.replace('#', '');
+
+                        const filename = `Mission CC ${cleanLink1} ${cleanLink2} ${cleanLink3}.jpg`;
+                        link.download = filename;
+                        link.href = canvas.toDataURL('image/jpg');
+                        link.click();
+                        loading.classList.remove('show');
+                    });
+                }, 1000);
+            }
+        }
+
+        function closeCropPopup() {
+            const popup = document.getElementById('cropPopup');
+            popup.classList.remove('show');
+        }
+
+        // Close popup when clicking outside
+        document.addEventListener('click', (e) => {
+            const popup = document.getElementById('cropPopup');
+            if (e.target === popup) {
+                closeCropPopup();
+            }
+        });
+
+        // Close popup with Escape key
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                closeCropPopup();
+            }
+        });
+
+        // Initialize the poster generator
+        document.addEventListener('DOMContentLoaded', () => {
+            new PosterGenerator();
+        });
+    </script>
+</body>
+
+</html>
