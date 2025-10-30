@@ -70,6 +70,10 @@ a {
     background: #c82333;
 }
 
+#cropPopupBody {
+    padding: 30px;
+}
+
 .container {
     max-width: 1200px;
     margin: 0 auto;
@@ -167,6 +171,12 @@ a {
     position: relative;
 }
 
+.preview-container canvas {
+    border: 2px solid #dee2e6;
+    border-radius: 8px;
+    max-width: 100%;
+}
+
 .preview-image {
     max-width: 100%;
     border-radius: 4px;
@@ -222,11 +232,41 @@ a {
     text-align: center;
 }
 
+.poster-preview h3 {
+    color: #667eea;
+    margin-bottom: 20px;
+    font-size: 1.8em;
+}
+
 .poster-canvas {
     max-width: 100%;
     border: 1px solid #ddd;
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.portrait-previews {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 30px;
+    margin: 30px 0;
+}
+
+.portrait-preview-item {
+    text-align: center;
+}
+
+.portrait-preview-item h4 {
+    color: #667eea;
+    margin-bottom: 15px;
+    font-size: 1.2em;
+}
+
+.portrait-canvas {
+    border: 2px solid #dee2e6;
+    border-radius: 12px;
+    max-width: 100%;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
 }
 
 #posterBG {
@@ -385,6 +425,66 @@ a {
     height: 40px;
     animation: spin 1s linear infinite;
     margin: 0 auto 10px;
+}
+
+.portrait-poster {
+    position: absolute;
+    left: -9999px;
+    width: 1080px;
+    height: 1350px;
+    background: white;
+}
+
+.portrait-poster img.publication {
+    position: absolute;
+    width: 395px;
+    height: 395px;
+    top: 454px;
+    left: 342px;
+}
+
+.portrait-poster img.author-img {
+    border-radius: 10px;
+    position: absolute;
+    width: 110.72px;
+    height: 141.6px;
+    top: 692px;
+    left: 355px;
+}
+
+.portrait-poster p.author {
+    position: absolute;
+    top: 938px;
+    left: 343px;
+    width: 343px;
+    font-size: 17px;
+    line-height: 1;
+    color: #fff;
+}
+
+.portrait-poster p.author span {
+    font-weight: bold;
+}
+
+.portrait-poster p.link {
+    position: absolute;
+    top: 975px;
+    left: 342px;
+    font-size: 17px;
+    color: #4f93cf;
+}
+
+.download-section {
+    margin-top: 30px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.download-btn-group {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 15px;
 }
 
 @keyframes spin {
